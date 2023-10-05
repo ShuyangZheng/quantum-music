@@ -6,7 +6,7 @@
         <router-link :to="{ name: 'home' }">Muso Ninjas</router-link>
       </h1>
       <div class="links">
-        <button>Logout</button>
+        <button @click="handleClick">Logout</button>
         <router-link class="btn" :to="{ name: 'signup'}">Signup</router-link>
         <router-link class="btn" :to="{ name: 'login'}">Login</router-link>
       </div>
@@ -15,9 +15,20 @@
 </template>
 
 <script>
+import useLogout from '@/composables/useLogout'
+import { useRouter } from 'vue-router'
+
 export default {
   setup() {
-    return {}
+    const router = useRouter()
+    const { error, logout, isPending } = useLogout()
+
+    const handleClick = async () => {
+      await logout()
+      router.push({ name: 'login' })
+    }
+
+    return { error, isPending, handleClick }
   }
 }
 </script>
