@@ -6,9 +6,13 @@
         <router-link :to="{ name: 'home' }">Muso Ninjas</router-link>
       </h1>
       <div class="links">
-        <button @click="handleClick">Logout</button>
-        <router-link class="btn" :to="{ name: 'signup'}">Signup</router-link>
-        <router-link class="btn" :to="{ name: 'login'}">Login</router-link>
+        <div v-if="user">
+          <button v-if="user" @click="handleClick">Logout</button>
+        </div>
+        <div v-else>
+          <router-link class="btn" :to="{ name: 'signup'}">Signup</router-link>
+          <router-link class="btn" :to="{ name: 'login'}">Login</router-link>
+        </div>
       </div>
     </nav>
   </div>
@@ -17,18 +21,20 @@
 <script>
 import useLogout from '@/composables/useLogout'
 import { useRouter } from 'vue-router'
+import getUser from '@/composables/getUser'
 
 export default {
   setup() {
     const router = useRouter()
     const { error, logout, isPending } = useLogout()
+    const { user } = getUser
 
     const handleClick = async () => {
       await logout()
       router.push({ name: 'login' })
     }
 
-    return { error, isPending, handleClick }
+    return { error, isPending, handleClick, user }
   }
 }
 </script>
