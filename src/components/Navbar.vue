@@ -27,7 +27,7 @@ export default {
   setup() {
     const router = useRouter()
     const { error, logout, isPending } = useLogout()
-    const { user } = getUser
+    const { user } = getUser()
 
     const handleClick = async () => {
       await logout()
