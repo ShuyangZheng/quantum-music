@@ -36,6 +36,7 @@ export default {
 
       title.value = ''
       artist.value = ''
+      showForm.value = false
     }
 
     return { title, artist, showForm, handleSubmit }
