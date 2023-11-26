@@ -1,14 +1,18 @@
 <template>
   <div class="navbar">
     <nav>
-      <img src="@/assets/ninja.png" alt="ninja">
+      <div class="logo">
+        <img src="@/assets/quantum_music.png" alt="logo">
+      </div>
+      
       <h1>
-        <router-link :to="{ name: 'home' }">Muso Ninjas</router-link>
+        <router-link :to="{ name: 'home' }">Quantum Music</router-link>
       </h1>
       <div class="links">
         <div v-if="user">
           <router-link :to="{ name: 'createPlaylist' }">Create Playlist</router-link>
           <router-link :to="{ name: 'userPlaylists' }">My Playlists</router-link>
+          <span>Hi there, {{ user.displayName }}</span>
           <button v-if="user" @click="handleClick">Logout</button>
         </div>
         <div v-else>
@@ -65,5 +69,17 @@ nav .links a, button {
 }
 nav img {
   max-height: 60px;
+  max-width: 60px;
+  transform: scale(1.5);
+}
+.logo {
+  overflow: hidden;
+}
+span {
+  font-size: 14px;
+  display: inline-block;
+  margin-left: 16px;
+  padding-left: 16px;
+  border-left: 1px solid #eee;
 }
 </style>
