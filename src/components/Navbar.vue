@@ -1,13 +1,17 @@
 <template>
   <div class="navbar">
     <nav>
+      
       <div class="logo">
-        <img src="@/assets/quantum_music.png" alt="logo">
+        <router-link :to="{ name: 'home' }">
+          <img src="@/assets/quantum_music.png" alt="logo">
+        </router-link>
       </div>
       
       <h1>
         <router-link :to="{ name: 'home' }">Quantum Music</router-link>
       </h1>
+
       <div class="links">
         <div v-if="user">
           <router-link :to="{ name: 'createPlaylist' }">Create Playlist</router-link>
@@ -20,6 +24,7 @@
           <router-link class="btn" :to="{ name: 'login'}">Login</router-link>
         </div>
       </div>
+      
     </nav>
   </div>
 </template>
